@@ -17,4 +17,8 @@ public class EducationService {
     public List<Education> getEducations(Integer id) {
         return educationRepository.getEducationsById(id);
     }
+
+    public void addEducations(Integer id, Education education) {
+        educationRepository.addEducations(id, education);
+    }
 }

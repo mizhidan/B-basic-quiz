@@ -10,7 +10,7 @@ import java.util.List;
 public class EducationRepository {
     List<Education> educationList = new ArrayList<>();
 
-    EducationRepository() {
+    public EducationRepository() {
         educationList.add(
                 Education.builder()
                         .userId(1)
@@ -35,5 +35,31 @@ public class EducationRepository {
             }
         }
         return  userEducationList;
+    }
+
+    public void addEducations(Integer id, Education education) {
+        education.setUserId(id);
+        educationList.add(education);
+    }
+
+    public void deleteAll() {
+        educationList.clear();
+    }
+
+    public void init() {
+        educationList.add(
+                Education.builder()
+                        .userId(1)
+                        .year(2005)
+                        .title("Secondary school specializing in artistic")
+                        .description("Eos, explicabo, nam, tenetur et ab eius deserunt aspernatur ipsum ducimus quibusdam quis voluptatibus.")
+                        .build());
+        educationList.add(
+                Education.builder()
+                        .userId(1)
+                        .year(2009)
+                        .title("First level graduation in Graphic Design")
+                        .description("Aspernatur, mollitia, quos maxime eius suscipit sed beatae ducimus quaerat quibusdam perferendis? Iusto, quibusdam asperiores unde repellat.")
+                        .build());
     }
 }

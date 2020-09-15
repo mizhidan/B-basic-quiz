@@ -1,6 +1,8 @@
 package com.thoughtworks.gtb.jdan.basicquiz.ControllerTest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thoughtworks.gtb.jdan.basicquiz.Domain.Education;
 import com.thoughtworks.gtb.jdan.basicquiz.Domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,13 +42,6 @@ public class UserControllerTest {
     }
 
     @Test
-    public void should_return_education_info_when_given_correct_id() throws Exception {
-        mockMvc.perform(get("/users/1/educations"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$",hasSize(2)));
-    }
-
-    @Test
     public void should_add_user_info_when_given_id() throws Exception {
         User user = User.builder()
                 .age(28)
@@ -58,4 +53,5 @@ public class UserControllerTest {
         mockMvc.perform(post("/users").contentType(MediaType.APPLICATION_JSON).content(request))
                 .andExpect(status().isCreated());
     }
+
 }
