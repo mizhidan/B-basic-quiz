@@ -1,14 +1,19 @@
 package com.thoughtworks.gtb.jdan.basicquiz.ControllerTest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thoughtworks.gtb.jdan.basicquiz.Domain.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -17,6 +22,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
     @Autowired
     MockMvc mockMvc;
+    ObjectMapper objectMapper;
+
+    @BeforeEach
+    void setUp() {
+        objectMapper = new ObjectMapper();
+    }
 
     @Test
     public void should_return_user_when_given_correct_id() throws Exception {
@@ -33,5 +44,18 @@ public class UserControllerTest {
         mockMvc.perform(get("/users/1/educations"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$",hasSize(2)));
+    }
+
+    @Test
+    public void should_add_user_info_when_given_id() throws Exception {
+        User user = User.builder()
+                .age(28)
+                .name("Panda")
+                .avatar("https://i.dlpng.com/static/png/6681915_preview.png")
+                .description("Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...")
+                .build();
+        String request = objectMapper.writeValueAsString(user);
+        mockMvc.perform(post("/users").contentType(MediaType.APPLICATION_JSON).content(request))
+                .andExpect(status().isCreated());
     }
 }
