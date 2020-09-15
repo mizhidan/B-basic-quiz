@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -12,12 +14,11 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 public class Education {
-    @NotNull
     private long userId;
-    @NotNull
+    @NotNull(message = "year cannot be empty")
     private long year;
-    @NotNull
+    @NotEmpty(message = "title cannot be empty")
     private String title;
-    @NotNull
+    @NotEmpty(message = "description cannot be empty")
     private String description;
 }

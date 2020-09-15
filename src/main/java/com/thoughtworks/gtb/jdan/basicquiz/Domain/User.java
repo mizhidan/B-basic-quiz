@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -13,14 +15,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 public class User {
-    @NotNull
     private long id;
-    @NotNull
+    @Min(value = 16, message = "name must over 16")
+    @NotEmpty(message = "name cannot be empty")
     private String name;
-    @NotNull
+    @NotNull(message = "age cannot be empty")
     private long age;
-    @NotNull
+    @NotEmpty(message = "avatar cannot be empty")
     private String avatar;
-    @NotNull
+    @NotEmpty(message = "description cannot be empty")
     private String description;
 }
