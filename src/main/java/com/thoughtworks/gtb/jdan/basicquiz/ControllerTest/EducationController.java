@@ -1,12 +1,9 @@
 package com.thoughtworks.gtb.jdan.basicquiz.ControllerTest;
 
 import com.thoughtworks.gtb.jdan.basicquiz.Domain.Education;
-import com.thoughtworks.gtb.jdan.basicquiz.Domain.User;
-import com.thoughtworks.gtb.jdan.basicquiz.Repository.UserRepository;
-import com.thoughtworks.gtb.jdan.basicquiz.Service.UserService;
+import com.thoughtworks.gtb.jdan.basicquiz.Service.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,13 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@CrossOrigin
-public class UserController {
+public class EducationController {
     @Autowired
-    UserService userService;
+    EducationService educationService;
 
-    @GetMapping("/users/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Integer id) {
-        return ResponseEntity.ok(userService.getUser(id));
+    @GetMapping("/users/{id}/educations")
+    public ResponseEntity<List<Education>> getEducations(@PathVariable Integer id) {
+        return ResponseEntity.ok(educationService.getEducations(id));
     }
 }
