@@ -13,7 +13,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User getUser(Integer id) {
+    public User getUser(Integer id) throws UserException {
         if(userRepository.getUserById(id) == null) {
             throw new UserException("cannot find Cannot find basic info for user with id " + id +".");
         }

@@ -1,9 +1,9 @@
 package com.thoughtworks.gtb.jdan.basicquiz.Exception;
 
-public class UserException extends Exception {
+public class EducationException extends Exception{
     private final String error;
 
-    public UserException(String error) {
+    public EducationException(String error) {
         this.error = error;
     }
 

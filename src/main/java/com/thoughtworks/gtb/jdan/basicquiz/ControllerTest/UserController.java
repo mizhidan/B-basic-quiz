@@ -2,6 +2,7 @@ package com.thoughtworks.gtb.jdan.basicquiz.ControllerTest;
 
 import com.thoughtworks.gtb.jdan.basicquiz.Domain.Education;
 import com.thoughtworks.gtb.jdan.basicquiz.Domain.User;
+import com.thoughtworks.gtb.jdan.basicquiz.Exception.UserException;
 import com.thoughtworks.gtb.jdan.basicquiz.Repository.UserRepository;
 import com.thoughtworks.gtb.jdan.basicquiz.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Integer id) {
+    public ResponseEntity<User> getUser(@PathVariable Integer id) throws UserException {
         return ResponseEntity.ok(userService.getUser(id));
     }
 

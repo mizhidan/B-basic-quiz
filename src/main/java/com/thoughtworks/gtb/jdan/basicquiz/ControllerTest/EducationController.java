@@ -1,6 +1,7 @@
 package com.thoughtworks.gtb.jdan.basicquiz.ControllerTest;
 
 import com.thoughtworks.gtb.jdan.basicquiz.Domain.Education;
+import com.thoughtworks.gtb.jdan.basicquiz.Exception.EducationException;
 import com.thoughtworks.gtb.jdan.basicquiz.Service.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ public class EducationController {
     EducationService educationService;
 
     @GetMapping("/users/{id}/educations")
-    public ResponseEntity<List<Education>> getEducations(@PathVariable Integer id) {
+    public ResponseEntity<List<Education>> getEducations(@PathVariable Integer id) throws EducationException {
         return ResponseEntity.ok(educationService.getEducations(id));
     }
 
