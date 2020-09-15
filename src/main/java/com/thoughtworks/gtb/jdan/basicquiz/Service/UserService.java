@@ -1,6 +1,7 @@
 package com.thoughtworks.gtb.jdan.basicquiz.Service;
 
 import com.thoughtworks.gtb.jdan.basicquiz.Domain.User;
+import com.thoughtworks.gtb.jdan.basicquiz.Exception.UserException;
 import com.thoughtworks.gtb.jdan.basicquiz.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,9 @@ public class UserService {
     }
 
     public User getUser(Integer id) {
+        if(userRepository.getUserById(id) == null) {
+            throw new UserException("cannot find Cannot find basic info for user with id " + id +".");
+        }
         return userRepository.getUserById(id);
     }
 
