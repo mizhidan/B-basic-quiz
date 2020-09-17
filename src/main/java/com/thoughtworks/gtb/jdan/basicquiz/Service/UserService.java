@@ -14,6 +14,7 @@ public class UserService {
     }
 
     public User getUser(Integer id) throws UserException {
+        // GTB: 用 Optional 改进下面的几行代码
         if(userRepository.getUserById(id) == null) {
             throw new UserException("cannot find Cannot find basic info for user with id " + id +".");
         }

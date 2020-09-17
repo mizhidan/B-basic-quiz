@@ -41,6 +41,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.description",is("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, non, dolorem, cumque distinctio magni quam expedita velit laborum sunt amet facere tempora ut fuga aliquam ad asperiores voluptatem dolorum! Quasi.")));
     }
 
+    // GTB: - 该测试在一起运行所有 tests 时会失败！
     @Test
     public void should_add_user_info_when_given_id() throws Exception {
         User user = User.builder()

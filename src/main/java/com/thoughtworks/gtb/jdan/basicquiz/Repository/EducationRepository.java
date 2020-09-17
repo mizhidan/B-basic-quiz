@@ -28,6 +28,7 @@ public class EducationRepository {
     }
 
     public List<Education> getEducationsById(Integer id) {
+        // GTB: 用 Stream 改进下面的几行代码
         List<Education> userEducationList = new ArrayList<>();
         for (Education education : educationList) {
             if (education.getUserId() == id) {
